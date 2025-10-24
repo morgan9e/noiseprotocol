@@ -1,7 +1,7 @@
 from noise.backends.default.ciphers import ChaCha20Cipher, AESGCMCipher
-from noise.backends.default.diffie_hellmans import ED25519, ED448
 from noise.backends.default.hashes import hmac_hash, BLAKE2sHash, BLAKE2bHash, SHA256Hash, SHA512Hash
-from noise.backends.default.keypairs import KeyPair25519, KeyPair448
+from noise.backends.default.diffie_hellmans import ED25519, ED448, SECP256R1
+from noise.backends.default.keypairs import KeyPair25519, KeyPair448, KeyPairSecp256r1
 from noise.backends.noise_backend import NoiseBackend
 
 
@@ -15,7 +15,8 @@ class DefaultNoiseBackend(NoiseBackend):
 
         self.diffie_hellmans = {
             '25519': ED25519,
-            '448': ED448
+            '448': ED448,
+            'secp256r1': SECP256R1
         }
 
         self.ciphers = {
@@ -32,7 +33,8 @@ class DefaultNoiseBackend(NoiseBackend):
 
         self.keypairs = {
             '25519': KeyPair25519,
-            '448': KeyPair448
+            '448': KeyPair448,
+            'secp256r1': KeyPairSecp256r1
         }
 
         self.hmac = hmac_hash
